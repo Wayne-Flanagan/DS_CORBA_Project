@@ -1,0 +1,18 @@
+module APIConnection {
+
+    interface Client {
+        void displayShowInfo(in string showJsonResponse);
+        void displayShowEpisodes(in string episodesJsonResponse);
+        void displayShowSeasons(in string seasonsJsonResponse);
+        void displayShowCast(in string castJsonResponse);
+        void displayShowAKAs(in string akasJsonResponse);
+    };
+    
+    interface TVMaze {
+        void getShow(in long id, in Client client);
+        void getShowEpisodeList(in long id, in Client client);
+        void getShowSeasonsList(in long id, in Client client);
+        void getShowCastList(in long id, in Client client);
+        void getShowAKAs(in long id, in Client client);
+    };  
+};
