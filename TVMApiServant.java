@@ -13,7 +13,7 @@ class TVMApiServant implements TVMazeOperations
    	public void getShow(int id, Client callback){
    		try {
    		    String json = sendGet("http://api.tvmaze.com/shows/" + id);
-		    callback.displayShowInfo(json);	
+             callback.displayShowInfo(json);	
    		} catch (Exception e){
    		    //e.printStacktrace();
    		}
@@ -23,7 +23,7 @@ class TVMApiServant implements TVMazeOperations
    	public void getShowEpisodeList(int id, Client callback){
    		try {
    		    String json = sendGet("http://api.tvmaze.com/shows/" + id + "/episodes");
-		    callback.displayShowEpisodes(json);	
+             callback.displayShowEpisodes(json);	
    		} catch (Exception e){
    		    //e.printStacktrace();
    		}
@@ -33,7 +33,7 @@ class TVMApiServant implements TVMazeOperations
    	public void getShowSeasonsList(int id, Client callback){
    		try {
    		    String json = sendGet("http://api.tvmaze.com/shows/" + id + "/seasons");
-		    callback.displayShowSeasons(json);	
+             callback.displayShowSeasons(json);	
    		} catch (Exception e){
    		    //e.printStacktrace();
    		}
@@ -43,17 +43,17 @@ class TVMApiServant implements TVMazeOperations
    	public void getShowCastList(int id, Client callback){
    		try {
    		    String json = sendGet("http://api.tvmaze.com/shows/" + id + "/cast");
-		    callback.displayShowCast(json);	
+             callback.displayShowCast(json);	
    		} catch (Exception e){
    		    //e.printStacktrace();
    		}
 
    	}
 
-   	public void getShowAKAs(int id, Client callback){
+   	public void getShowEpisodesByNum(int id, int season, int number, Client callback){
    		try {
-   		    String json = sendGet("http://api.tvmaze.com/shows/" + id + "/akas");
-		    callback.displayShowAKAs(json);	
+   		    String json = sendGet("http://api.tvmaze.com/shows/" + id + "/episodebynumber?season=" + season + "&number=" + number);
+             callback.displayShowEpisodesByNum(json);	
    		} catch (Exception e){
    		    //e.printStacktrace();
    		}

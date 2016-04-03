@@ -27,8 +27,10 @@ public class TVMApiClient
         System.out.println("Retrieving Show info");
         int id = 1;
         Request getShowRequest = tvmaze._request("getShow");
-        Any arg1_1 = getShowRequest.add_in_arg().insert_long(id);
-        Any arg2_1 = getShowRequest.add_in_arg().insert_Object(callback);
+        Any arg1_1 = getShowRequest.add_in_arg();
+        Any arg2_1 = getShowRequest.add_in_arg();
+        arg1_1.insert_long(id);
+        arg2_1.insert_Object(callback);
         getShowRequest.set_return_type(orb.get_primitive_tc(org.omg.CORBA.TCKind.tk_void));
         getShowRequest.invoke();
 
@@ -38,8 +40,10 @@ public class TVMApiClient
         //Dynamic Invocation
         System.out.println("Retrieving Show Episodes info");
         Request getEpisodesRequest = tvmaze._request("getShowEpisodeList");
-        Any arg1_2 = getEpisodesRequest.add_in_arg().insert_long(id);
-        Any arg2_2 = getEpisodesRequest.add_in_arg().insert_Object(callback);
+        Any arg1_2 = getEpisodesRequest.add_in_arg();
+        Any arg2_2 = getEpisodesRequest.add_in_arg();
+        arg1_2.insert_long(id);
+        arg2_2.insert_Object(callback);
         getEpisodesRequest.set_return_type(orb.get_primitive_tc(org.omg.CORBA.TCKind.tk_void));
         getEpisodesRequest.invoke();
 
@@ -49,8 +53,10 @@ public class TVMApiClient
         //Dynamic Invocation
         System.out.println("Retrieving Show Seasons info");
         Request getSeasonsRequest = tvmaze._request("getShowSeasonsList");
-        Any arg1_3 = getSeasonsRequest.add_in_arg().insert_long(id);
-        Any arg2_3 = getSeasonsRequest.add_in_arg().insert_Object(callback);
+        Any arg1_3 = getSeasonsRequest.add_in_arg();
+        Any arg2_3 = getSeasonsRequest.add_in_arg();
+        arg1_3.insert_long(id);
+        arg2_3.insert_Object(callback);
         getSeasonsRequest.set_return_type(orb.get_primitive_tc(org.omg.CORBA.TCKind.tk_void));
         getSeasonsRequest.invoke();
 
@@ -60,8 +66,10 @@ public class TVMApiClient
         //Dynamic Invocation
         System.out.println("Retrieving Show Cast info");
         Request getCastRequest = tvmaze._request("getShowCastList");
-        Any arg1_4 = getCastRequest.add_in_arg().insert_long(id);
-        Any arg2_4 = getCastRequest.add_in_arg().insert_Object(callback);
+        Any arg1_4 = getCastRequest.add_in_arg();
+        Any arg2_4 = getCastRequest.add_in_arg();
+        arg1_4.insert_long(id);
+        arg2_4.insert_Object(callback);
         getCastRequest.set_return_type(orb.get_primitive_tc(org.omg.CORBA.TCKind.tk_void));
         getCastRequest.invoke();
 
@@ -69,15 +77,21 @@ public class TVMApiClient
         //tvmaze.getShowCastList(id, callback);
 
         //Dynamic Invocation
-        System.out.println("Retrieving Show AKA info");
-        Request getAKARequest = tvmaze._request("getShowAKAs");
-        Any arg1_5 = getAKARequest.add_in_arg().insert_long(id);
-        Any arg2_5 = getAKARequest.add_in_arg().insert_Object(callback);
-        getAKARequest.set_return_type(orb.get_primitive_tc(org.omg.CORBA.TCKind.tk_void));
-        getAKARequest.invoke();
+        System.out.println("Retrieving Episode by number info");
+        Request getEpByNumRequest = tvmaze._request("getShowEpisodesByNum");
+        Any arg1_5 = getEpByNumRequest.add_in_arg();
+        Any arg2_5 = getEpByNumRequest.add_in_arg();
+        Any arg3_5 = getEpByNumRequest.add_in_arg();
+        Any arg4_5 = getEpByNumRequest.add_in_arg();
+        arg1_5.insert_long(id);
+        arg2_5.insert_long(id);
+        arg3_5.insert_long(id);
+        arg4_5.insert_Object(callback);
+        getEpByNumRequest.set_return_type(orb.get_primitive_tc(org.omg.CORBA.TCKind.tk_void));
+        getEpByNumRequest.invoke();
 
         //Static Invocation
-        //tvmaze.getShowAKAs(id, callback);
+        //tvmaze.getEpisodesByNum(id, callback);
 
     } catch (Exception e) {
            e.printStackTrace();
@@ -103,7 +117,7 @@ class ClientImpl implements ClientOperations {
         System.out.println("Message via callBack from server is " + info) ;
     }
 
-    public void displayShowAKAs(String info) {
+    public void displayShowEpisodesByNum(String info) {
         System.out.println("Message via callBack from server is " + info) ;
     }
 }
