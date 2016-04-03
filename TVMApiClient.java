@@ -12,16 +12,24 @@ public class TVMApiClient
     public static void main(String args[])
     {
     try{
+        // create and initialize the ORB
         ORB orb = ORB.init(args, null);
 
+        //Obtaining the object reference to the Name Service
         org.omg.CORBA.Object objRef = orb.resolve_initial_references("NameService");
+        //Narrowing the object reference of the Name Service to the correct Type
         NamingContext rootCtx = NamingContextHelper.narrow(objRef);
+        //Creating a name of the desired object that we want to get the object reference of, from the name server
         NameComponent nc = new NameComponent("Hello", "");
         NameComponent path[] = {nc};
         
+        //Instantiate an instance of the TVMaze interface for accessing its methods
         TVMaze tvmaze = TVMazeHelper.narrow(rootCtx.resolve(path));
 
+        //Instantiate an instance of the Client class for accessing its  callback methods
         Client callback = new Client_Tie(new ClientImpl()) ;
+
+        //5 methods to retrieve data from the server after it has requested it from the TVMaze API
 
         //Dynamic Invocation
         System.out.println("Retrieving Show info");

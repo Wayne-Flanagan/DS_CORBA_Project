@@ -10,6 +10,8 @@ import javax.net.ssl.HttpsURLConnection;
 
 class TVMApiServant implements TVMazeOperations
 {
+   //The 5 methods to interact with the TVMaze API and return the json response to the client via a callback
+
    	public void getShow(int id, Client callback){
    		try {
    		    String json = sendGet("http://api.tvmaze.com/shows/" + id);
